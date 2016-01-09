@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CAboutDlg" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAABAAAAAAAAAAAAAAQQAAAAAAAAA=</HashCode>
+      <FileName>robot_move_201541Dlg.cpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LaserObAvoid" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAoAAAAAAAAAAAAAAAAAAQBDgAAAAAAAAAACAE=</HashCode>
+      <FileName>Laser_Obstacle_Avoidance.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LMSControl" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABCgAIAEAAABAAAjIAkAgCAgRAAogAACAAAABEAEA=</HashCode>
+      <FileName>LMS_Control_Michael.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CMotionOutput" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACiwIUgAAaOwgACEElIDhIgAgEAiiCYkAAACImBIIEE=</HashCode>
+      <FileName>MotionOutput.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Crobot_move_201541App" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAQAAAAAIAAAA=</HashCode>
+      <FileName>robot_move_201541.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Crobot_move_201541Dlg" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EACAQAEAAAAAQAAIABAAIAgAABAigAQAQAAAAAAQAAQ=</HashCode>
+      <FileName>robot_move_201541Dlg.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="MOTIONINFO" Collapsed="true">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAQABACAgBABBAEAAAAEAAEAAAAgAECAAAgAEA=</HashCode>
+      <FileName>MotionOutput.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="PIDINFO" Collapsed="true">
+    <Position X="0.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAJEAAAAAAAAAAARIEAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MotionOutput.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="SELFCHECKINFO" Collapsed="true">
+    <Position X="2.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAIAIA=</HashCode>
+      <FileName>MotionOutput.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="MTFROTHERINFO" Collapsed="true">
+    <Position X="4" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIQACAACBAAAAAAAAAEAAAAAAAAAgAgAAAAAAAABCA=</HashCode>
+      <FileName>MotionOutput.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="MOTIONRECEINFO" Collapsed="true">
+    <Position X="2.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAABAgAAAAIAAABAhAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>MotionOutput.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="threadInfo" Collapsed="true">
+    <Position X="4" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAggAAA=</HashCode>
+      <FileName>robot_move_201541Dlg.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Typedef Name="uchar" Collapsed="true">
+    <Position X="0.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>LMS_Control_Michael.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Enum Name="CRESULAT::CHECKRESULT" Collapsed="true">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAQAACAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MotionOutput.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="SimSun" Size="9" />
+</ClassDiagram>
