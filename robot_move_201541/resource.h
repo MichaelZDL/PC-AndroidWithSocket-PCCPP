@@ -18,6 +18,7 @@
 #define IDC_SICK                        1005
 #define IDC_BUTTON5                     1006
 #define IDC_BUTTON9                     1006
+#define IDC_BUTTON10                    1006
 #define IDC_EDIT3                       1007
 #define IDC_BUTTON7                     1007
 #define IDC_EDIT4                       1008

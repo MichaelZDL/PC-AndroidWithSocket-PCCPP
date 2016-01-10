@@ -61,6 +61,8 @@ public:
 	CEdit printfCEdit;
 
 	afx_msg void OnBnClickedButton9();
+	afx_msg void OnBnClickedButton10();
+	CEdit m_SendData;
 };
 
 struct threadInfo

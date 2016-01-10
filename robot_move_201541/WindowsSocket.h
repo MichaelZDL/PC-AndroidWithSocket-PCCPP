@@ -24,7 +24,7 @@ public:
 	WSADATA  wsa_data;                /* type defined in winsock2.h */
 	SOCKET   TCPListen, TCPClient;    /* type defined in winsock2.h */
 	struct sockaddr_in local,client;  /* struct defined in winsock2.h */
-	int      ipAddrSize, recvStatus, iterationStep;             
+	int      ipAddrSize, recvStatus, sendStatus, iterationStep;             
 	char     recvBuffer[128];
 	double   time_old, time_new, time_interval;
 	HANDLE hThread;
@@ -32,7 +32,7 @@ public:
 public:
 	//functions
 	void ListenTCPClient(void);
-	void SendToTCPClient(void);
+	void SendCStringToTCPClient(CString);
 	void ShutDownBoth(void);
 };
 
@@ -40,6 +40,7 @@ struct socketThreadInfo
 {
 	int* pRangedata;
 	WindowsSocket* pClass;
+	CString pSendMessageStr;
 };
 
 UINT SocketThreadSend(LPVOID lpParam);

@@ -99,9 +99,10 @@ void WindowsSocket::ListenTCPClient(void)
 	WSACleanup();
 }
 
-void WindowsSocket::SendToTCPClient(void)
+void WindowsSocket::SendCStringToTCPClient(CString sendMessageStr)
 {
 	Info.pClass=this;
+	Info.pSendMessageStr=sendMessageStr;
 	hThread = CreateThread(NULL,
 		0,
 		(LPTHREAD_START_ROUTINE)SocketThreadSend,
@@ -123,12 +124,38 @@ void WindowsSocket::ShutDownBoth(void)
 UINT SocketThreadSend(LPVOID lpParam)
 {	
 	socketThreadInfo* pInfo = (socketThreadInfo*)lpParam;
+	int sendStatus;
+	//printf()
+	//CWnd *pWnd=CWnd::FindWindow(NULL,_T("Avoidance"));
+	//CString str;
+	//str.Format(_T("发送线程开启\r\n\r\n"));
+	//pWnd->SendMessage(WM_MICHAEL,0,LPARAM(&str));
 
-	//windowsSocket.ListenTCPClient();
-	CWnd *pWnd=CWnd::FindWindow(NULL,_T("Avoidance"));
-	CString str;
-	str.Format(_T("发送线程开启\r\n\r\n"));
-	pWnd->SendMessage(WM_MICHAEL,0,LPARAM(&str));
+	CString cstr;
+	cstr = pInfo->pSendMessageStr;
+	// Cstring covert to const char*
+	const size_t strsize=(cstr.GetLength()+1)*2; // 宽字符的长度;
+	char * pstr= new char[strsize]; //分配空间;
+	size_t sz=0;
+	wcstombs_s(&sz,pstr,strsize,cstr,_TRUNCATE);
+	const char* buffer=(const char*)pstr; // 字符串已经由原来的CString 转换成了 const char*
+	//Cstring covert to const char*
+
+	/*sendStatus = send(pInfo->pClass->TCPClient, pInfo->pSendMessageStr, strlen(pInfo->pSendMessageStr), 0);*/
+	sendStatus = send(pInfo->pClass->TCPClient, buffer, strlen(buffer), 0);
+
+	/* check the status of the send() call */
+	/* send() returns the number of bytes sent OR -1 if failure */
+	if (sendStatus == 0)
+		return 0;  /* nothing has been sent */
+	else if (sendStatus == SOCKET_ERROR)
+	{
+		CWnd *pWnd=CWnd::FindWindow(NULL,_T("Avoidance"));
+		CString str;
+		str.Format(_T("Failed to send(): %d\n"), WSAGetLastError());
+		pWnd->SendMessage(WM_MICHAEL,0,LPARAM(&str));
+		return 0;
+	}
 
 	return 0;
 }

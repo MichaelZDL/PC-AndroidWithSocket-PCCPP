@@ -97,6 +97,7 @@ void Crobot_move_201541Dlg::DoDataExchange(CDataExchange* pDX)
 	CDialog::DoDataExchange(pDX);
 
 	DDX_Control(pDX, IDC_EDIT5, printfCEdit);
+	DDX_Control(pDX, IDC_EDIT4, m_SendData);
 }
 
 BEGIN_MESSAGE_MAP(Crobot_move_201541Dlg, CDialog)
@@ -115,7 +116,6 @@ BEGIN_MESSAGE_MAP(Crobot_move_201541Dlg, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON6, &Crobot_move_201541Dlg::OnBnClickedButton6)
 	ON_BN_CLICKED(IDC_BUTTON7, &Crobot_move_201541Dlg::OnBnClickedButton7)
 	ON_BN_CLICKED(IDC_BUTTON8, &Crobot_move_201541Dlg::OnBnClickedButton8)
-	ON_BN_CLICKED(IDC_BUTTON9, &Crobot_move_201541Dlg::OnBnClickedButton9)
 END_MESSAGE_MAP()
 
 
@@ -285,18 +285,10 @@ void Crobot_move_201541Dlg::OnBnClickedSick()
 void Crobot_move_201541Dlg::OnBnClickedButton5()//WatchData
 {
 	// TODO: Add your control notification handler code here
-	//7×éÉ¨ÃèÊý¾Ý
-	StartWatchdata=!StartWatchdata;
-	if(StartWatchdata==1)
-	{
-		Info.pClass=this;
-		hThread = CreateThread(NULL,
-			0,
-			(LPTHREAD_START_ROUTINE)ThreadFunc,
-			&Info,
-			0,
-			&ThreadID);
-	}
+	CString cstr;
+	GetDlgItem(IDC_EDIT4)->GetWindowText(cstr);
+	//cstr.Format(_T("Hello World!\0"));
+	windowsSocket.SendCStringToTCPClient(cstr);
 }
 
 UINT ThreadFunc(LPVOID lpParam)
@@ -467,8 +459,4 @@ void Crobot_move_201541Dlg::PrintfMFC(LPCTSTR str)
 	printfCEdit.SetSel(nLength, nLength);
 	printfCEdit.ReplaceSel(str);
 }
-void Crobot_move_201541Dlg::OnBnClickedButton9()
-{
-	// TODO: Add your control notification handler code here
 
-}
