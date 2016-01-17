@@ -33,6 +33,7 @@ public:
 	//functions
 	void ListenTCPClient(void);
 	void SendCStringToTCPClient(CString);
+	void SendIntArrayToTCPClient(int*);
 	void ShutDownBoth(void);
 };
 
@@ -41,6 +42,8 @@ struct socketThreadInfo
 	int* pRangedata;
 	WindowsSocket* pClass;
 	CString pSendMessageStr;
+	int* pSendInt;
 };
 
 UINT SocketThreadSend(LPVOID lpParam);
+UINT SocketThreadSendArray(LPVOID lpParam);
