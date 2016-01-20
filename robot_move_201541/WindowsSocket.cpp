@@ -195,7 +195,7 @@ UINT SocketThreadSendIntArray362(LPVOID lpParam)
 		pNow++;
 	}
 	
-	sendStatus = send(pInfo->pClass->TCPClient, buf, strlen(buf), 0);
+	sendStatus = send(pInfo->pClass->TCPClient, buf, 1448, 0);
 
 	/* check the status of the send() call */
 	/* send() returns the number of bytes sent OR -1 if failure */
