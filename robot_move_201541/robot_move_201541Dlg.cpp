@@ -281,16 +281,12 @@ void Crobot_move_201541Dlg::OnBnClickedSick()
 
 
 }
-
+int recBuf[MAXPACKET];
 void Crobot_move_201541Dlg::OnBnClickedButton5()//WatchData
 {
 	//// TODO: Add your control notification handler code here
-	//CString cstr;
-	//GetDlgItem(IDC_EDIT4)->GetWindowText(cstr);
-	////cstr.Format(_T("Hello World!\0"));
-	//windowsSocket.SendCStringToTCPClient(cstr);
-	static int i=65535;
-	windowsSocket.SendIntArrayToTCPClient(&i);
+	Laser.PolarToRect(Length, bufer, recBuf);
+	windowsSocket.SendIntArray362ToTCPClient(recBuf);
 
 }
 

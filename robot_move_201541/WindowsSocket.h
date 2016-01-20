@@ -33,7 +33,7 @@ public:
 	//functions
 	void ListenTCPClient(void);
 	void SendCStringToTCPClient(CString);
-	void SendIntArrayToTCPClient(int*);
+	void SendIntArray362ToTCPClient(int*);
 	void ShutDownBoth(void);
 };
 
@@ -46,4 +46,4 @@ struct socketThreadInfo
 };
 
 UINT SocketThreadSend(LPVOID lpParam);
-UINT SocketThreadSendArray(LPVOID lpParam);
+UINT SocketThreadSendIntArray362(LPVOID lpParam);

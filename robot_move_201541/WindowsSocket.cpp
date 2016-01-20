@@ -111,13 +111,13 @@ void WindowsSocket::SendCStringToTCPClient(CString sendMessageStr)
 		&ThreadID);
 }
 
-void WindowsSocket::SendIntArrayToTCPClient(int* SendArray)
+void WindowsSocket::SendIntArray362ToTCPClient(int* SendArray)
 {
 	Info.pClass=this;
 	Info.pSendInt=SendArray;
 	hThread = CreateThread(NULL,
 		0,
-		(LPTHREAD_START_ROUTINE)SocketThreadSendArray,
+		(LPTHREAD_START_ROUTINE)SocketThreadSendIntArray362,
 		&Info,
 		0,
 		&ThreadID);
@@ -178,21 +178,24 @@ union data
 	char charc[4];  
 }int32To4char; 
 
-UINT SocketThreadSendArray(LPVOID lpParam)
+UINT SocketThreadSendIntArray362(LPVOID lpParam)
 {	
 	socketThreadInfo* pInfo = (socketThreadInfo*)lpParam;
 	int sendStatus;
-	//printf()
-	//CWnd *pWnd=CWnd::FindWindow(NULL,_T("Avoidance"));
-	//CString str;
-	//str.Format(_T("发送线程开启\r\n\r\n"));
-	//pWnd->SendMessage(WM_MICHAEL,0,LPARAM(&str));
 
-	//sprintf(buffer, "%d", *(pInfo->pSendInt));
-	int32To4char.inti32 = *(pInfo->pSendInt);
-
-	/*sendStatus = send(pInfo->pClass->TCPClient, pInfo->pSendMessageStr, strlen(pInfo->pSendMessageStr), 0);*/
-	sendStatus = send(pInfo->pClass->TCPClient, int32To4char.charc, strlen(int32To4char.charc), 0);
+	int* pNow = pInfo->pSendInt;
+	char buf[1448];
+	for (int i=0;i<362;i++)
+	{
+		int32To4char.inti32 = *pNow;
+		for (int j=0;j<4;j++)
+		{
+			buf[i*4+j]=int32To4char.charc[j];
+		}
+		pNow++;
+	}
+	
+	sendStatus = send(pInfo->pClass->TCPClient, buf, strlen(buf), 0);
 
 	/* check the status of the send() call */
 	/* send() returns the number of bytes sent OR -1 if failure */
