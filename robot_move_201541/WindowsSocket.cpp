@@ -5,6 +5,7 @@
 using namespace std;
 
 #define WM_MICHAEL WM_USER+100
+#define CONNECT_SOCKET_OK 1008
 extern BOOLEAN OnlineOn;
 socketThreadInfo Info;
 void WindowsSocket::ListenTCPClient(void)
@@ -70,7 +71,7 @@ void WindowsSocket::ListenTCPClient(void)
 		}
 		CString str1;
 		str1.Format(_T("Client Accepted: %S:%d\n"),inet_ntoa(client.sin_addr),ntohs(client.sin_port));
-		pWnd->SendMessage(WM_MICHAEL,0,LPARAM(&str1));
+		pWnd->SendMessage(WM_MICHAEL,CONNECT_SOCKET_OK,LPARAM(&str1));
 
 		/* Step 5.2: Send and Receive Data in loops */
 		iterationStep = 1;

@@ -39,6 +39,8 @@ WindowsSocket windowsSocket;
 Crobot_move_201541Dlg* CrobotDlg = NULL;
 BOOLEAN OnlineOn=TRUE;
 BOOLEAN threadFuncOverOK=TRUE;
+#define CONNECT_SOCKET_OK 1008
+
 void Crobot_move_201541Dlg::Drive(float m_fXVel,float m_fYVel,float m_fZVel)
 {
 
@@ -169,7 +171,7 @@ BOOL Crobot_move_201541Dlg::OnInitDialog()
 		Laser.ChangeAngleRes(ANGLE_RES_180X1);
 		Laser.StartContinuousOutput();
 		Info.pClass=this;
-		SetTimer(1, 200, NULL);//读数据，构图
+		SetTimer(1, 50, NULL);//读数据，构图
 		hThreadAvdObs = CreateThread(NULL,
 			0,
 			(LPTHREAD_START_ROUTINE)ThreadAvdObs,
@@ -281,12 +283,12 @@ void Crobot_move_201541Dlg::OnBnClickedSick()
 
 
 }
-int recBuf[MAXPACKET];
+
 void Crobot_move_201541Dlg::OnBnClickedButton5()//WatchData
 {
 	//// TODO: Add your control notification handler code here
-	Laser.PolarToRect(Length, bufer, recBuf);
-	windowsSocket.SendIntArray362ToTCPClient(recBuf);
+	//Laser.PolarToRect(Length, bufer, recBuf);
+	//windowsSocket.SendIntArray362ToTCPClient(recBuf);
 
 }
 
@@ -304,8 +306,8 @@ UINT ThreadFunc(LPVOID lpParam)
 afx_msg LRESULT Crobot_move_201541Dlg::OnMichael(WPARAM wParam, LPARAM lParam)
 {
 	CString* rmsg = (CString*)lParam;
-
 	PrintfMFC(*rmsg);
+	connectSocketOK=wParam;
 	return 0;
 }
 void Crobot_move_201541Dlg::OnBnClickedAvoid()
@@ -358,6 +360,12 @@ void Crobot_move_201541Dlg::OnTimer(UINT_PTR nIDEvent)
 			//转换成直角坐标构图
 			int Buf[MAXPACKET];
 			Laser.PolarToRect(Length, bufer, Buf);
+
+			if (connectSocketOK==CONNECT_SOCKET_OK)
+			{
+				windowsSocket.SendIntArray362ToTCPClient(Buf);
+
+			}
 
 			CvvImage m_CvvImage;
 			Mat Sick_image=Mat::zeros(400,400,CV_8UC3);//黑色画布
