@@ -171,7 +171,7 @@ BOOL Crobot_move_201541Dlg::OnInitDialog()
 		Laser.ChangeAngleRes(ANGLE_RES_180X1);
 		Laser.StartContinuousOutput();
 		Info.pClass=this;
-		SetTimer(1, 50, NULL);//读数据，构图
+		SetTimer(1, 500, NULL);//读数据，构图
 		hThreadAvdObs = CreateThread(NULL,
 			0,
 			(LPTHREAD_START_ROUTINE)ThreadAvdObs,
@@ -236,7 +236,6 @@ HCURSOR Crobot_move_201541Dlg::OnQueryDragIcon()
 void Crobot_move_201541Dlg::OnBnClickedButton1()
 {
 	// TODO: Add your control notification handler code here
-	PrintfMFC(_T("I love you \r\n"));
 	Drive(0.05,0,0);
 }
 
@@ -306,7 +305,15 @@ UINT ThreadFunc(LPVOID lpParam)
 afx_msg LRESULT Crobot_move_201541Dlg::OnMichael(WPARAM wParam, LPARAM lParam)
 {
 	CString* rmsg = (CString*)lParam;
+	
+	if (*rmsg==(_T("MT-R move forward")))OnBnClickedButton1();
+	if (*rmsg==(_T("MT-R move stop")))OnBnClickedButton2();
+	if (*rmsg==(_T("MT-R move back")))OnBnClickedButton3();
+	if (*rmsg==(_T("MT-R move left")))OnBnClickedButton6();
+	if (*rmsg==(_T("MT-R move right")))OnBnClickedButton7();	
+
 	PrintfMFC(*rmsg);
+	PrintfMFC(_T("\n"));
 	connectSocketOK=wParam;
 	return 0;
 }

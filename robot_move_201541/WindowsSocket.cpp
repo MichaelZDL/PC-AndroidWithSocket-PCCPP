@@ -83,13 +83,15 @@ void WindowsSocket::ListenTCPClient(void)
 			else if(recvStatus == SOCKET_ERROR)
 			{
 				str.Format(_T("Failed in recv(): %d\n"),WSAGetLastError());
-				pWnd->SendMessage(WM_MICHAEL,0,LPARAM(&str));
+				pWnd->SendMessage(WM_MICHAEL,CONNECT_SOCKET_OK,LPARAM(&str));
 				break;
 			}
 			recvBuffer[recvStatus] = 0x00; /* '\0' */
 
-			str.Format(_T("Step = %d>>%S\n"),iterationStep,recvBuffer);
-			pWnd->SendMessage(WM_MICHAEL,0,LPARAM(&str));
+			//str.Format(_T("Step = %d>>%S\n"),iterationStep,recvBuffer);
+			str.Format(_T("%S"),recvBuffer);
+
+			pWnd->SendMessage(WM_MICHAEL,CONNECT_SOCKET_OK,LPARAM(&str));
 			iterationStep++;
 		}
 	}
